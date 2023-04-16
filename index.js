@@ -9,6 +9,17 @@ const init = async () => {
         host: 'localhost'
     });
 
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: (request, h) => {
+
+            return 'Hello World!';
+        }
+    });
+
+    await server.register(require('./server/api/players/PlayersApi'), {routes: {prefix: '/api'}});
+
     await server.start();
     console.log('Server running on %s', server.info.uri);
 };
